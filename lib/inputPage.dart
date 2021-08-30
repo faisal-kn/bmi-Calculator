@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'ReuseableCard.dart';
+import 'GenderWidget.dart';
+
+const activeCardColor = Color(0xFF1D1E33);
+const bottomContainerColor = Color(0xFFEB1555);
+const bottomContainerHeight = 40.0;
 
 class InputPage extends StatefulWidget {
   @override
@@ -17,65 +23,49 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.all(15.0),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF1D1E33),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                     ),
-                  ),
                 Expanded(
-                  child: Container(
-                      margin: EdgeInsets.all(15.0),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF1D1E33),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
+                  child: ReuseableCard(Color(0xFF1D1E33), GenderWidget(Icons.male,'Male')),
+                ),
+                Expanded(
+                  child: ReuseableCard(
+                    Color(0xFF1D1E33),
+                    GenderWidget(Icons.female,'Female')
+                  ),
                 ),
               ],
             ),
           ),
           Expanded(
-            child:Container(
-              margin: EdgeInsets.all(15.0),
-              padding: EdgeInsets.all(15.0),
-              decoration: BoxDecoration(
-                color: Color(0xFF1D1E33),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            ),
+            child: ReuseableCard(Color(0xFF1D1E33), Container()),
           ),
           Expanded(
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: Container(
-                    margin: EdgeInsets.all(15.0),
-                    padding: EdgeInsets.all(15.0),
-                    decoration: BoxDecoration(
-                      color: Color(0xFF1D1E33),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
+                  child: ReuseableCard(Color(0xFF1D1E33), Container()),
                 ),
                 Expanded(
-                  child: Container(
-                    margin: EdgeInsets.all(15.0),
-                    decoration: BoxDecoration(
-                      color: Color(0xFF1D1E33),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
+                  child: ReuseableCard(Color(0xFF1D1E33), Container()),
                 ),
               ],
             ),
-          )
+          ),
+          Container(
+            height: bottomContainerHeight,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25.0),
+                  topRight: Radius.circular(25.0)),
+              color: bottomContainerColor,
+            ),
+          ),
         ],
       ),
-
     );
   }
 }
+
+
+
+
