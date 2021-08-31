@@ -16,6 +16,8 @@ class _InputPageState extends State<InputPage> {
   Color maleCardColor = inactiveCardColor;
   Color femaleCardColor = inactiveCardColor;
   int height = 180;
+  int weight = 60;
+  int age = 18;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +68,7 @@ class _InputPageState extends State<InputPage> {
                     height: 8.0,
                   ),
                   Row(
-                    mainAxisAlignment:MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: <Widget>[
@@ -87,19 +89,20 @@ class _InputPageState extends State<InputPage> {
                     ],
                   ),
                   SliderTheme(
-                    data:SliderTheme.of(context).copyWith(
+                    data: SliderTheme.of(context).copyWith(
                       activeTrackColor: Colors.white,
                       thumbColor: Color(0xFFEB1555),
-                      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0,pressedElevation: 10.0),
+                      thumbShape: RoundSliderThumbShape(
+                          enabledThumbRadius: 15.0, pressedElevation: 10.0),
                     ),
                     child: Slider(
-                      max:220.0,
-                      min:100.0,
+                      max: 220.0,
+                      min: 100.0,
                       inactiveColor: Color(0xFF8D8E98),
                       value: height.toDouble(),
-                      onChanged: (double setValue){
+                      onChanged: (double setValue) {
                         setState(() {
-                          height=setValue.round();
+                          height = setValue.round();
                         });
                       },
                     ),
@@ -112,22 +115,139 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: ReuseableCard(Color(0xFF1D1E33), Container()),
+                  child: ReuseableCard(
+                    Color(0xFF1D1E33),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'WEIGHT',
+                          style: cardTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: TextStyle(
+                            fontSize: 40.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            FloatingActionButton(
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                              backgroundColor: Color(0xFF4C4F5E),
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: 40.0,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 15.0,
+                            ),
+                            FloatingActionButton(
+                              onPressed: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                              backgroundColor: Color(0xFF4C4F5E),
+                              child: Icon(
+                                Icons.remove,
+                                color: Colors.white,
+                                size: 40.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: ReuseableCard(Color(0xFF1D1E33), Container()),
+                  child: ReuseableCard(
+                    Color(0xFF1D1E33),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'AGE',
+                          style: cardTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: TextStyle(
+                            fontSize: 40.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            FloatingActionButton(
+                              onPressed: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                              backgroundColor: Color(0xFF4C4F5E),
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: 40.0,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 15.0,
+                            ),
+                            FloatingActionButton(
+                              onPressed: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                              backgroundColor: Color(0xFF4C4F5E),
+                              child: Icon(
+                                Icons.remove,
+                                color: Colors.white,
+                                size: 40.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
-          Container(
-            height: bottomContainerHeight,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(25.0),
-                  topRight: Radius.circular(25.0)),
-              color: bottomContainerColor,
+          GestureDetector(
+            onTap:(){
+              Navigator.pushNamed(context, '/result');
+            },
+            child: Container(
+              child: Center(
+                child: Text(
+                  'CALCULATE BMI',
+                  style: TextStyle(
+                    fontSize: 20.0
+                  ),
+                ),
+              ),
+              height: bottomContainerHeight,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(25.0),
+                    topRight: Radius.circular(25.0)),
+                color: bottomContainerColor,
+              ),
             ),
           ),
         ],
