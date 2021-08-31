@@ -62,6 +62,9 @@ class _InputPageState extends State<InputPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('HEIGHT', style: cardTextStyle),
+                  SizedBox(
+                    height: 8.0,
+                  ),
                   Row(
                     mainAxisAlignment:MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -83,17 +86,23 @@ class _InputPageState extends State<InputPage> {
                       ),
                     ],
                   ),
-                  Slider(
-                    max:220.0,
-                    min:100.0,
-                    activeColor: Color(0xFFEB1555),
-                    inactiveColor: Color(0xFF8D8E98),
-                    value: height.toDouble(),
-                    onChanged: (double setValue){
-                      setState(() {
-                        height=setValue.round();
-                      });
-                    },
+                  SliderTheme(
+                    data:SliderTheme.of(context).copyWith(
+                      activeTrackColor: Colors.white,
+                      thumbColor: Color(0xFFEB1555),
+                      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0,pressedElevation: 10.0),
+                    ),
+                    child: Slider(
+                      max:220.0,
+                      min:100.0,
+                      inactiveColor: Color(0xFF8D8E98),
+                      value: height.toDouble(),
+                      onChanged: (double setValue){
+                        setState(() {
+                          height=setValue.round();
+                        });
+                      },
+                    ),
                   )
                 ],
               ),
