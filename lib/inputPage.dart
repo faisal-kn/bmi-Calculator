@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'ReuseableCard.dart';
 import 'GenderWidget.dart';
+import 'calculator.dart';
 
 const activeCardColor = Color(0xFF1D1E33);
 const bottomContainerColor = Color(0xFFEB1555);
 const bottomContainerHeight = 40.0;
 const inactiveCardColor = Color(0xFF111328);
-
+BmiCalculator bmi=BmiCalculator(60, 180);
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -229,7 +230,9 @@ class _InputPageState extends State<InputPage> {
           ),
           GestureDetector(
             onTap:(){
-              Navigator.pushNamed(context, '/result');
+              bmi=BmiCalculator(weight,height);
+              bmi.calculateBmi();
+              Navigator.pushReplacementNamed(context, '/result');
             },
             child: Container(
               child: Center(
